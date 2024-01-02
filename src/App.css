@@ -1,38 +1,234 @@
-.App {
+:root{
+  --body_background: rgb(14,14,14);
+  --text_color: white;
+  --line_color: rgb(73, 73, 73);
+  --theme_changer_color:rgb(83, 83, 83);
+  --checkbox_color:rgb(27, 27, 27);
+  --checkbox_left: 5%;
+  --translate_x: 0px;
+  --box_color: rgb(14, 14, 14);
+
+}
+
+[data-theme="light"] {
+  --body_background:rgb(223, 223, 223);
+  --text_color:grey;
+  --line_color:rgb(48, 47, 47);
+  --theme_changer_color:rgb(170, 170, 170);
+  --checkbox_color:rgb(206,206,206);
+  --checkbox_left: 53%;
+  --translate_x:24px;
+  --box_color: rgb(240,240,240);
+}
+
+*{
+  box-sizing: border-box;
+  font-family: 'Lato';
+  color: var(--text_color);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Lato:wght@300;400&family=Work+Sans&display=swap');
+
+body{
+  margin: 0;
+  background-color:var(--body_background);
+  background-repeat: no-repeat;
+  transition: all 0.3s;
+  min-height: 100vh;
+}
+
+body.active-modal{
+  overflow-y: hidden;
+}
+nav{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.movie-app  .row{
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.movie-app{
+  position: relative;
+}
+
+.hdr{
+  border-bottom: 1px solid rgb(73, 73, 73) ;
+}
+
+
+.movie-app  .row::-webkit-scrollbar{
+  display: none;
+}
+
+.row > div {
+  width: fit-content;
+}
+
+.image-container{
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.image-container:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.image-container:hover .overlay{
+  opacity: 1;
+}
+
+.overlay{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 92.5%;
+  transition: 0.5s ease;
+  opacity: 0;
+  bottom: 0;
+  font-size: 20px;
+  padding: 20px 0 20px 15px;
+  text-align: center;
+  gap:5px;
+}
+
+.overlay > svg{
+  padding-top: 4px;
+}
+
+.nav-bar > span{
+  font-family: 'Kanit' , sans-serif;
+  font-size: 18px;
+  
+}
+
+.nav-bar > div:first-child{
+  margin-left: 15px;
+  /*border: 1px solid white;*/
+  border-radius: 30%;
+  padding: 0 1px;
+  width: 50px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  background-color: var(--theme_changer_color);
+  cursor: pointer;
+
+}
+
+.circle:hover{
+  border-color: var(--line_color);
+  transition: 0.3s;
+}
+
+.circle{
+  background-color: rgb(27, 27, 27);
+  border: 0.5px solid rgb(65, 63, 63);
+  width: 20px;
+  height: 19px;
+  display: block;
+  border-radius: 50%;
+}
+.nav-bar  > span:nth-child(2){
+  margin-right: 15px;
+  
+}
+
+.input {
+  background-color: transparent;
+  border:none;
+  height: 45px;
+}
+
+::placeholder{
+  color: var(--text_color);
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.overlay1{
+  position: absolute;
+  min-height:1200px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 5;
+  top: 60%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  overflow: hidden;
+}
+
+
+.theme{
+  position: relative;
+  display: block;
+}
+.checkmark{
+  position: absolute;
+  top: 12%;
+  left: 5%;
+  height: 19px;
+  width: 20px;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+  transform: translateX(var(--translate_x));
+
+}
+
+.Checkbox{
+  position: absolute;
+  top: 12%;
+  left: 5%;
+  height: 19px;
+  width: 20px;
+  background-color: var(--checkbox_color);
+  border-radius: 50%;
+  transform: translateX(var(--translate_x));
+  
+}
+
+
+.modal-text{
+  background-color: var(--box_color); 
+  width: 400px;
+  height: 600px;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+}
+
+.button{
+  cursor: pointer;
+  margin-top: -35px;
+  margin-bottom: 30px;
+  width: 92%;
+  display: flex;
+  justify-content: end;
+
+}
+
+.button > span {
+  border: 1px solid var(--text_color);
+  border-radius: 50%;
+  width: 25px;
+  display: block;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal-text > div > div{
+  text-align: center;
+  margin-top: 10px;
+  font-size: 22px;
 }
